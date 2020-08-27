@@ -22,5 +22,5 @@ export default async function loadCsv(csvFilePath: string): Promise<string[]> {
     parseCSV.on('end', resolve);
   });
 
-  return lines;
+  return Promise.all(lines);
 }

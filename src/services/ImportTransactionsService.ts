@@ -21,14 +21,16 @@ class ImportTransactionsService {
 
     const transactions: Response[] = [];
 
-    data.forEach(line => {
+    for (const line of data) {
       transactions.push({
         title: line[0],
         type: line[1] as 'income' | 'outcome',
         value: Number(line[2]),
         category: line[3],
       });
-    });
+    }
+
+    data.forEach(line => {});
 
     transactions.map(transaction =>
       createTransactionService.execute(transaction),
