@@ -34,18 +34,20 @@ class CreateTransactionService {
     });
 
     if (!findCategoryWithSameTitle) {
-      const newCategory = categoriesRepository.create({
+      findCategoryWithSameTitle = categoriesRepository.create({
         title: category,
       });
 
-      findCategoryWithSameTitle = await categoriesRepository.save(newCategory);
+      findCategoryWithSameTitle = await categoriesRepository.save(
+        findCategoryWithSameTitle,
+      );
     }
 
     const transaction = transactionsRepository.create({
       title,
       value,
       type,
-      category_id: findCategoryWithSameTitle.id,
+      category: findCategoryWithSameTitle,
     });
 
     await transactionsRepository.save(transaction);

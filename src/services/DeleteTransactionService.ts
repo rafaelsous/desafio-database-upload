@@ -20,7 +20,7 @@ class DeleteTransactionService {
     const findTransaction = await transactionsRepository.findOne(id);
 
     if (!findTransaction) {
-      throw new AppError('Transaction not found');
+      throw new AppError('Transaction doest not found');
     }
 
     await transactionsRepository.delete(id);
