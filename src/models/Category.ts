@@ -4,7 +4,10 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
+
+import Transaction from './Transaction';
 
 @Entity('categories')
 export class Category {
@@ -13,6 +16,9 @@ export class Category {
 
   @Column()
   title: string;
+
+  @OneToMany(() => Transaction, transaction => transaction.category)
+  transaction: Transaction;
 
   @CreateDateColumn()
   created_at: Date;
